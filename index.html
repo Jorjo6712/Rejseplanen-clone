@@ -6,30 +6,40 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="index.js"></script>
-    <link rel="stylesheet" href="index.scss">
+    <link rel="stylesheet" href="index.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Rejseplanen</title>
 </head>
+
 <body>
     <div class="header"> 
         <img src="rejseplanen.png"> 
     </div>
 
+    <section class="background-image"/>
+    
     <div class="main-container">
       <h2> Rejs: </h2>
       <select>
-        <option value="">i Denmark</option>
+        <option value="">i Danmark</option>
         <option value="">til Skåne</option>
         <option value="">fra Skåne</option>
         <option value="">fra Denmark til Europa</option>
-        <<option value="">fra Europa til Denmark</option>
+        <option value="">fra Europa til Denmark</option>
       </select> 
-        <div class="your-location-form">
-            <form>
-                <input placeholder="Fra">
-                <input placeholder="Til">
-            </form>
+        <div class="your-locations-form">
+          <form>
+            <input placeholder="Fra">
+            <input placeholder="Til">
+          </form>
         </div>
+      <div class="date-and-time">
+        <form>
+          <select disabled>
+          </select>
+          <button> Find </button>
+        </form>
+      </div>
     </div>
 </body>
 </html>

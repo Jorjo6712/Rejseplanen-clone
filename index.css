@@ -7,6 +7,17 @@
   font-family: "Archivo";
 }
 
+.background-image {
+ background-image: url("bg.jpg");
+ background-origin: content-box;
+ background-position: center;
+ background-size: cover;
+ background-repeat: no-repeat;
+ padding-top: 1vh;
+ height: 45vh;
+ width: 100vw;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -24,13 +35,13 @@
 
 .main-container {
   margin: auto;
-  margin-top: 5vh;
   display: flex;
+  margin-top: 5vh;
   position: relative;
   justify-self: center;
   align-self: center;
-  border-radius: 0.5vw;
   background-color: #000d2a;
+  border-radius: 0.1vw;
   width: 50%;
   height: auto;
   padding: 5vh;
@@ -39,15 +50,14 @@
   h2 {
     position: absolute;
     color: #eaba2a;
-    font-family: 'sans-serif';
     font-weight: normal;
     top: 0.75;
   }
   
   select {
     position: absolute;
-    margin-left: 5vw;
-    margin-top: 0.20vh;
+    margin-left: 4.5vw;
+    margin-top: -0.1vh;
     height: 10%;
     width: 20%;
     border-bottom: #eaba2a solid 0.15vh;
@@ -61,7 +71,7 @@
   }
 }
 
-.your-location-form {
+.your-locations-form {
   width: 100%;
   input {
       border-bottom: gray solid 0.09vw;
@@ -72,26 +82,57 @@
       padding: 1.25vh 0.5vw 1.25vh 0.5vw;
       font-size: 2vh; 
       background-color: transparent;
-      color: gray;
-
-    &:focus {
-      border: black solid 0.09vw;
-    }
+      color: white;
   }
 
   form {
     display: flex;
     flex-direction: column;
     gap: 1.25vh;
-    width: 45%; 
+    width: 100%; 
     margin-top: 5vh;
     flex-wrap: nowrap;
   }
 }
 
-.results-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+.date-and-time {
+  width: 100%;
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 5vh;
+    width: 100%;
+    margin-top: 7.75vh;
+    flex-wrap: nowrap;
+  }
+
+  select {
+    border-bottom: gray solid 0.09vw;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0.05vw;
+    padding: 1.25vh 0.5vw 1.25vh 0.5vw;
+    margin-right: 2vw;
+    margin-top: -2.50vh;
+    position: relative;
+    width: 60%;
+    height: 5%;
+    font-size: 1vh; 
+    background-color: transparent;
+    color: gray;
+  }
+
+  button {
+    background-color: #eaba2a;
+    padding: 1vh 0.75vw 1vh 0.75vw;
+    position: relative;
+    color: #000d2a;
+    border: none;
+    border-radius: 0.1vw;
+    font-size:1.25vw;
+    font-weight: bold;
+  }
 }
