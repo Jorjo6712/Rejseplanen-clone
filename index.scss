@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Archivo";
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  box-shadow: -1px 5px 5px 0px rgba(230,230,230,1); 
+  margin-top: -5vh;
+  height: 12.5vh;
+  width: 100%;
+  img {
+    scale: 60%;
+    margin-top: 5vh;
+    margin-left: 23.5vw;
+  }
+}
+
+.main-container {
+  margin: auto;
+  margin-top: 5vh;
+  display: flex;
+  position: relative;
+  justify-self: center;
+  align-self: center;
+  border-radius: 0.5vw;
+  background-color: #000d2a;
+  width: 50%;
+  height: auto;
+  padding: 5vh;
+  flex-direction: row;
+  
+  h2 {
+    position: absolute;
+    color: #eaba2a;
+    font-family: 'sans-serif';
+    font-weight: normal;
+    top: 0.75;
+  }
+  
+  select {
+    position: absolute;
+    margin-left: 5vw;
+    margin-top: 0.20vh;
+    height: 10%;
+    width: 20%;
+    border-bottom: #eaba2a solid 0.15vh;
+    background-color: transparent;
+    color: #eaba2a;
+    font-size: 1.85vh;
+    scale: 130%;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+}
+
+.your-location-form {
+  width: 100%;
+  input {
+      border-bottom: gray solid 0.09vw;
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
+      border-radius: 0.05vw;
+      padding: 1.25vh 0.5vw 1.25vh 0.5vw;
+      font-size: 2vh; 
+      background-color: transparent;
+      color: gray;
+
+    &:focus {
+      border: black solid 0.09vw;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25vh;
+    width: 45%; 
+    margin-top: 5vh;
+    flex-wrap: nowrap;
+  }
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
