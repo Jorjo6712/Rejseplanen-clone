@@ -1,48 +1,51 @@
-<!doctype html>                                               
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="inputs.js"></script>
-    <script src="api.js"></script>
-    <link rel="stylesheet" href="index.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <title>Rejseplanen</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="inputs.js"></script>
+  <script src="api.js"></script>
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Rejseplanen</title>
 </head>
 
 <body>
-    <div class="header"> 
-        <img src="rejseplanen.png"> 
-    </div>
+  <div class="header">
+    <img src="rejseplanen.png">
+  </div>
 
-    <section class="background-image"/>
-    
-    <div class="main-container">
-      <h2> Rejs: </h2>
-      <select>
-        <option value="">i Danmark</option>
-        <option value="">til Skåne</option>
-        <option value="">fra Skåne</option>
-        <option value="">fra Denmark til Europa</option>
-        <option value="">fra Europa til Denmark</option>
-      </select> 
-        <div class="your-locations-form">
-          <form>
-            <input type="text" id="from-input" placeholder="Fra">
-            <div id="from-suggestions" class="suggestions-from-box">
-            </div>
-            <input type="text" id="to-input" placeholder="Til">
-            <div id="to-suggestions" class="suggestions-to-box">
-            </div>
-          </form>
+  <section class="background-image" />
+
+  <div class="main-container">
+    <h2> Rejs: </h2>
+    <select>
+      <option>i Danmark</option>
+      <option>til Skåne</option>
+      <option>fra Skåne</option>
+      <option>fra Denmark til Europa</option>
+      <option>fra Europa til Denmark</option>
+    </select>
+    <div class="your-locations-form">
+      <form>
+        <input type="text" id="from-input" placeholder="Fra">
+        <div id="from-suggestions" class="suggestions-from-box">
         </div>
-      <div class="date-and-time">
-        <form>
-          <input type="datetime-local">
-          <button> Find </button>
-        </form>
-      </div>
+        <input type="text" id="to-input" placeholder="Til">
+        <div id="to-suggestions" class="suggestions-to-box">
+        </div>
+      </form>
     </div>
+    <div class="date-and-time">
+      <form>
+        <input type="datetime-local">
+        <button id="data-submit" type="submit"> Find </button>
+      </form>
+    </div>
+  </div>
 </body>
+
 </html>

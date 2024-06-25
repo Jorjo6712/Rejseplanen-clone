@@ -23,8 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     event.stopPropagation();
   });
 
-  fromSuggestions.appendChild();
-
+  // fromSuggestions.appendChild();
 
   toInput.addEventListener('input', () => {
     toSuggestions.style.display = 'flex';
