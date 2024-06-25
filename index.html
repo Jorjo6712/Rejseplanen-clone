@@ -1,11 +1,11 @@
-<!doctype html>
+<!doctype html>                                               
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="index.js"></script>
+    <script src="inputs.js"></script>
+    <script src="api.js"></script>
     <link rel="stylesheet" href="index.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Rejseplanen</title>
@@ -29,14 +29,17 @@
       </select> 
         <div class="your-locations-form">
           <form>
-            <input placeholder="Fra">
-            <input placeholder="Til">
+            <input type="text" id="from-input" placeholder="Fra">
+            <div id="from-suggestions" class="suggestions-from-box">
+            </div>
+            <input type="text" id="to-input" placeholder="Til">
+            <div id="to-suggestions" class="suggestions-to-box">
+            </div>
           </form>
         </div>
       <div class="date-and-time">
         <form>
-          <select disabled>
-          </select>
+          <input type="datetime-local">
           <button> Find </button>
         </form>
       </div>
