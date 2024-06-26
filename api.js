@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const getData = async (location) => {
     const baseUrl = "http://xmlopen.rejseplanen.dk/bin/rest.exe/";
     let argument = 'location?input=';
-    location = '';
 
     const apiURL = baseUrl.concat(argument, location, '&format=json');
 
@@ -27,37 +26,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const handleInput = () => {
-
-    fromInput.addEventListener('input', async () => {
-      let location = fromInput.value;
-      console.log(location);
-      const data = await getData(location);
-
-      fromSuggestions.innerHTML = '';
-
-      if (data && data.LocationList && data.LocationList.StopLocation) {
-        const stopLocations = data.LocationList.StopLocation;
-
-
-        const filteredLocations = stopLocations.filter(stopLocation => {
-          const regex = new RegExp(location, 'i');
-          return regex.test(stopLocation.name);
-        });
-
-
-        filteredLocations.forEach(stopLocation => {
-          const option = document.createElement('option');
-          option.value = stopLocation.name;
-          option.innerHTML = stopLocation.name;
-          fromSuggestions.appendChild(option);
-        });
-      } else {
-        console.error('No valid data found or LocationList is missing');
-      }
-    });
-
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return function() {
+      const context = this;
+      const args = arguments;
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func.apply(context, args);
+      }, delay);
+    };
   };
-  handleInput();
-});
+  
+  const handleSuggestionsInput = async (data, suggestionsElement) => {
+    suggestionsElement.innerHTML = '';
 
+    if (data && data.LocationList && data.LocationList.StopLocation) {
+      const stopLocations = data.LocationList.StopLocation;
+
+      stopLocations.forEach(stopLocation => {
+        const option = document.createElement('option');
+        option.value = stopLocation.name;
+        option.innerHTML = stopLocation.name;
+        suggestionsElement.appendChild(option);
+      });
+    } else {
+      console.error('No valid data found or LocationList is missing');
+    }
+  };
+
+  const handleFromInput = debounce(async () => {
+    let location = fromInput.value;
+    const data = await getData(location);
+    handleSuggestionsInput(data, fromSuggestions);
+  }, 300);
+
+  const handleToInput = debounce(async () => {
+    let location = toInput.value;
+    const data = await getData(location);
+    handleSuggestionsInput(data, toSuggestions);
+  }, 300);
+
+  fromInput.addEventListener('input', handleFromInput);
+  toInput.addEventListener('input', handleToInput);
+  
+  fromSuggestions.addEventListener('click', function(event) {
+    if (fromSuggestions !== event.target && fromSuggestions.contains(event.target)) {
+      fromInput.innerHTML = event.target.innerHTML;
+    }
+  })
+
+});
