@@ -5,12 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const fromSuggestions = document.getElementById('from-suggestions');
   const toSuggestions = document.getElementById('to-suggestions');
   const toInput = document.getElementById('to-input');
+  const dateTimeInput = document.getElementById('date-time-input');
   const submitButton = document.getElementById('data-submit');
 
-  const getData = async (location) => {
-    const baseUrl = "http://xmlopen.rejseplanen.dk/bin/rest.exe/";
-    let argument = 'location?input=';
+  const baseUrl = "http://xmlopen.rejseplanen.dk/bin/rest.exe/";
 
+  const getData = async (location) => {
+
+    const argument = 'location?input=';
     const apiURL = baseUrl.concat(argument, location, '&format=json');
 
     try {
@@ -26,6 +28,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const formatDateTime = (dateTimeStr) => {
+    const date = new Date(dateTimeStr);
+    const formattedDate = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' }).format(date);
+    const formattedTime = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false }).format(date);
+    return { formattedDate, formattedTime };
+  };
+
+  const getTripData = async (origin, destCoordX, destCoordY, destination, dateTimeStr) => {
+    const { formattedDate, formattedTime } = dateTimeStr ? formatDateTime(dateTimeStr) : {};
+    const params = new URLSearchParams({
+      originID: origin,
+      destCoordX,
+      destCoordY,
+      destCoordName: destination,
+      ...(dateTimeStr && { date: formattedDate, time: formattedTime })
+    });
+
+    const apiURL = `${baseUrl}trip?${params.toString()}&format=json`;
+    console.log(apiURL);
+
+    try {
+      const response = await fetch(apiURL);
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  };
+
+  submitButton.addEventListener('click', async () => {
+    const origin = fromInput.value;
+    const destCoordX = toInput.value;
+    const destCoordY = toInput.value;
+    const destination = toInput.value;
+    const dateTimeStr = dateTimeInput.value;
+
+    const tripData = await getTripData(origin, destCoordX, destCoordY, destination, dateTimeStr);
+    console.log(tripData);
+  });
+
   const debounce = (func, delay) => {
     let timeoutId;
     return function() {
@@ -37,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, delay);
     };
   };
-  
+
   const handleSuggestionsInput = async (data, suggestionsElement) => {
     suggestionsElement.innerHTML = '';
 
@@ -55,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+
   const handleFromInput = debounce(async () => {
     let location = fromInput.value;
     const data = await getData(location);
@@ -69,11 +113,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fromInput.addEventListener('input', handleFromInput);
   toInput.addEventListener('input', handleToInput);
-  
-  fromSuggestions.addEventListener('click', function(event) {
-    if (fromSuggestions !== event.target && fromSuggestions.contains(event.target)) {
-      fromInput.innerHTML = event.target.innerHTML;
-    }
-  })
-
 });
